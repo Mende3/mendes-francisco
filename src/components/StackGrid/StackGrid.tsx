@@ -52,7 +52,7 @@ export default function StackGrid() {
   return (
     <section className="py-10 px-4">
       <div className="mx-auto max-w-4xl">
-        <h2 className="mb-8 text-2xl font-bold text-foreground">Stack técnica</h2>
+        <h2 className="mb-8 text-2xl font-bold text-foreground">Stack <span className="text-blue-600">Técnica</span></h2>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {stacks.map(({ label, icon: Icon, color, tags }) => {
             const c = colorMap[color]

@@ -121,26 +121,26 @@ const CreatorProfile = () => {
             {/* Direita — bio + highlights + quote */}
             <div className="p-6 md:col-span-5 md:p-8">
               <div className="mb-6">
-                <h4 className="mb-3 text-xl font-semibold text-primary">
-                  Sobre {creatorData.name.split(' ')[0]}
+                <h4 className="mb-3 text-xl font-semibold text-blue-600">
+                  About {creatorData.name.split(' ')[0]}
                 </h4>
                 {creatorData.bio.map((para, idx) => (
-                  <p key={idx} className="mb-4 text-sm text-foreground/70">
+                  <p key={idx} className="mb-4 text-gray-600">
                     {para}
                   </p>
                 ))}
               </div>
 
-              <div className="mb-6 grid grid-cols-1 gap-3 lg:grid-cols-3">
+              <div className="mb-6 grid grid-cols-1 gap-4 lg:grid-cols-3">
                 {highlights.map((item, idx) => (
                   <div
                     key={idx}
-                    className="flex items-center gap-3 rounded-md border border-border bg-muted/30 p-3"
+                    className="flex items-center space-x-3 rounded-md bg-[#F4F4F4] p-3"
                   >
                     {item.icon}
                     <div>
-                      <p className="text-xs font-medium text-foreground/60">{item.title}</p>
-                      <p className="text-sm font-semibold text-foreground">{item.subtitle}</p>
+                      <p className="text-sm font-medium text-gray-700">{item.title}</p>
+                      <p className="text-sm text-indigo-500">{item.subtitle}</p>
                     </div>
                   </div>
                 ))}

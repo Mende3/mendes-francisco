@@ -5,7 +5,6 @@ import { Home, User, FolderGit2, Briefcase } from 'lucide-react'
 import CreatorProfile from './components/profile/ProfileCard.tsx'
 import StackGrid from './components/StackGrid/StackGrid.tsx'
 import Projects from './components/CardHoverEffectDemo/Projects.tsx'
-import StackGridAnimated from './components/StackGridAnimated/StackGridAnimated.tsx'
 
 const navItems = [
   { name: 'Home', url: '/', icon: Home },

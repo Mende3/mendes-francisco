@@ -2,7 +2,7 @@
 import { SiGithub, SiWhatsapp } from '@icons-pack/react-simple-icons'
 import { Award, Star, User } from 'lucide-react'
 import { CiLinkedin } from 'react-icons/ci'
-import profileImg from '../../assets/profile-without-back.png'
+import profileImg from '../../assets/profile-without-back2.jpeg'
 
 interface AvatarProps {
   src?: string
@@ -37,17 +37,17 @@ const creatorData = {
 
 const socialLinks = [
   {
-    href: 'https://github.com/mendes',
+    href: 'https://github.com/mende3',
     label: 'GitHub',
     icon: <SiGithub className="h-5 w-5 text-primary" />,
   },
   {
-    href: 'https://wa.me/244900000000',
+    href: 'https://wa.me/244936854246',
     label: 'WhatsApp',
     icon: <SiWhatsapp className="h-5 w-5 text-primary" />,
   },
   {
-    href: 'https://linkedin.com/in/mendes',
+    href: 'www.linkedin.com/in/mendes-francisco-4a1166368',
     label: 'LinkedIn',
     icon: <CiLinkedin className="h-5 w-5 text-primary" />,
   },
@@ -78,11 +78,12 @@ const CreatorProfile = () => {
 
         <div className="mb-12 text-center">
           <h2 className="mb-4 text-3xl font-bold md:text-4xl">
-            Me <span className="text-blue-600">conehcça</span>
+            Me <span className="text-blue-600">conheça</span>
           </h2>
           <p className="mx-auto max-w-2xl text-gray-600">
-            The mastermind behind ComponentCraft who has dedicated years to helping developers
-            create beautiful UI components
+            Bem-vindo ao meu portfólio. Aqui encontras os projectos que construí,
+            as tecnologias que domino e um pouco sobre quem sou. Fique à vontade
+            para explorar e entrar em contacto se algo despertar interesse.
           </p>
         </div>
 
@@ -122,7 +123,7 @@ const CreatorProfile = () => {
             <div className="p-6 md:col-span-5 md:p-8">
               <div className="mb-6">
                 <h4 className="mb-3 text-xl font-semibold text-blue-600">
-                  About {creatorData.name.split(' ')[0]}
+                  Sobre o {creatorData.name.split(' ')[0]}
                 </h4>
                 {creatorData.bio.map((para, idx) => (
                   <p key={idx} className="mb-4 text-gray-600">

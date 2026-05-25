@@ -2,7 +2,7 @@
 import { SiGithub, SiWhatsapp } from '@icons-pack/react-simple-icons'
 import { Award, Star, User } from 'lucide-react'
 import { CiLinkedin } from 'react-icons/ci'
-import profileImg from '../../assets/profile-without-back2.jpeg'
+import profileImg from '../../assets/profile2.jpeg'
 
 interface AvatarProps {
   src?: string

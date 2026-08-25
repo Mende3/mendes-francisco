@@ -10,8 +10,6 @@ import {
   Download,
   ExternalLink,
   Loader2,
-  // Github,
-  // Linkedin,
   Mail,
   Menu,
   Moon,
@@ -35,15 +33,6 @@ interface Project {
 }
 
 
-const projectImages = [
-  'https://images.pexels.com/photos/34803990/pexels-photo-34803990.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-  'https://images.pexels.com/photos/159299/graphic-design-studio-tracfone-programming-html-159299.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-  'https://images.pexels.com/photos/907489/pexels-photo-907489.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-  'https://images.pexels.com/photos/34803985/pexels-photo-34803985.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-  'https://images.pexels.com/photos/907487/pexels-photo-907487.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-  'https://images.pexels.com/photos/160107/pexels-photo-160107.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-];
-
 const services = [
   { icon: BarChart3, title: 'Análise de dados', text: 'Sendo uma area dentro de data science estou dando uma olhada e aprendendo conceitos todos os dias, praticando também com ferramentas do Google e da Microsoft.' },
   { icon: Code, title: 'Programação intensiva', text: 'Uma das características da 42Escola é fazer com que o aluno aprenda a escrever códigos na raça, e comigo não foi diferente.' },
@@ -53,12 +42,13 @@ const services = [
 ];
 
 const filters = ['Machine learning', 'Sql', 'Power BI', 'ALLMs', 'Spatial Data Science'];
-
+const skills = ['TS/JS', 'C/C++/C#', 'Python', 'langChain/langGraph', 'IA', 'Redis', 'Postgres/MongoDB/MySQL', 'n8n', 'React', 'Supabase', 'Prisma', 'NestJS/FastAP', 'Node', 'BI', 'Docker', 'Prompt Enginer']
 function App() {
   const [dark, setDark] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeFilter, setActiveFilter] = useState('Machine learning');
-  const [sent, setSent] = useState(false);
+  // const [sent, setSent] = useState(false);
+  const sent = false;
 
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
@@ -84,10 +74,10 @@ function App() {
     })();
   }, []);
 
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-    setSent(true);
-  };
+  // const handleSubmit = (event: React.FormEvent) => {
+  //   event.preventDefault();
+  //   setSent(true);
+  // };
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -118,8 +108,10 @@ function App() {
           </div>
           <h1>Mendes Francisco</h1>
           <p className="hero-role">Feiticeiro de Dados</p>
-          <p className="hero-copy">Como cientista de dados, backend developer e sysadmin apaixonado, com experiência em programação, IA, dados, backend, docker entre e mais</p>
+          <p className="hero-copy">Como cientista de dados, backend developer, automatizador e sysadmin apaixonado, com experiência em programação, IA, dados, backend, docker e mais</p>
+          <div className="filter-row">{skills.map((filter) => <button key={filter} className={activeFilter === filter ? 'filter active' : 'filter'} onClick={() => setActiveFilter(filter)}>{filter}</button>)}</div>
           <button className="primary-button" onClick={() => scrollTo('contact')}>Entre em contato<ArrowUpRight size={14} /></button>
+
         </section>
 
         <section className="about content-section" id="about">
@@ -194,7 +186,7 @@ function App() {
 
         <section className="contact content-section" id="contact">
           <SectionHeading title="Entre em contacto" subtitle="Vamos trabalhar juntos" />
-          <form className="contact-form" onSubmit={handleSubmit}>
+          <form className="contact-form"> 
             <label>Nome<input type="text" placeholder="exemplo@email.com" required /></label>
             <label>Email<input type="email" placeholder="nome completo" required /></label>
             <label>Serviço<div className="select-wrap"><select defaultValue=""><option value="" disabled>Seleciona um serviço</option><option>Data analytics</option><option>Backend</option><option>Uso de IA</option><option>Automações</option><option>Sys Admin</option><option>DevOp</option><option>Outro</option></select><ChevronDown size={14} /></div></label>

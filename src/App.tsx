@@ -28,8 +28,8 @@ interface Project {
   id: string;
   title: string;
   description: string;
-  image_url: string | undefined;
-  project_link: string | undefined;
+  image_url: string | null;
+  project_link: string | null;
 }
 
 
@@ -165,12 +165,12 @@ function App() {
         {!loading && !error && projects.length > 0 && (
         <>
             <div className="projects-grid">
-              {projects.map((project, index) => <article className="project-card" key={project.id}>
+              {projects.map((project) => <article className="project-card" key={project.id}>
                   <div className="project-image">
-                    <img src={project.image_url} alt="Project preview" /><span className="project-overlay"><ExternalLink size={15} /></span>
+                    <img src={project.image_url ?? undefined} alt="Project preview" /><span className="project-overlay"><ExternalLink size={15} /></span>
                   </div>
                   <div className="project-meta">
-                    <div><h3>{project.title}</h3><p>{project.description}</p></div><a href={project.project_link} target='_blank'><button aria-label="Open project"><ArrowUpRight size={13} /></button></a>
+                    <div><h3>{project.title}</h3><p>{project.description}</p></div><a href={project.project_link || undefined} target='_blank'><button aria-label="Open project"><ArrowUpRight size={13} /></button></a>
                   </div>
               </article>)}
             </div> 

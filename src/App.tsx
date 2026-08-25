@@ -107,7 +107,7 @@ function App() {
             <img src={foto} alt="" />
           </div>
           <h1>Mendes Francisco</h1>
-          <p className="hero-role">Feiticeiro de Dados</p>
+          <p className="hero-role">Ficheiro de Dados</p>
           <p className="hero-copy">Como cientista de dados, backend developer, automatizador e sysadmin apaixonado, com experiência em programação, IA, dados, backend, docker e mais</p>
           <div className="filter-row">{skills.map((filter) => <button key={filter} className={activeFilter === filter ? 'filter active' : 'filter'} onClick={() => setActiveFilter(filter)}>{filter}</button>)}</div>
           <button className="primary-button" onClick={() => scrollTo('contact')}>Entre em contato<ArrowUpRight size={14} /></button>

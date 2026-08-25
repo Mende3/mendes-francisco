@@ -1,14 +1,12 @@
-import { FormEvent, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   AlertCircle,
   ArrowUpRight,
   BarChart3,
   Bot,
-  BrainCircuit,
   Check,
   ChevronDown,
   Code,
-  Code2,
   Download,
   ExternalLink,
   Loader2,
@@ -16,17 +14,13 @@ import {
   // Linkedin,
   Mail,
   Menu,
-  MessageCircle,
   Moon,
-  Palette,
   Send,
-  Sparkles,
   Sun,
   X,
 } from 'lucide-react';
 
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
-import { SiPython, SiRedis} from '@icons-pack/react-simple-icons';
 import { MdOutlineArchitecture } from 'react-icons/md';
 import { TbApi } from 'react-icons/tb';
 import { supabase } from './lib/supabase';
@@ -36,8 +30,8 @@ interface Project {
   id: string;
   title: string;
   description: string;
-  image_url: string | null;
-  project_link: string | null;
+  image_url: string | undefined;
+  project_link: string | undefined;
 }
 
 
@@ -90,7 +84,7 @@ function App() {
     })();
   }, []);
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     setSent(true);
   };
@@ -194,7 +188,7 @@ function App() {
         
         
           <a href='https://github.com/Mende3' target='_blank'>
-            <button className="outline-button view-button">View all <ArrowUpRight size={13} /></button>
+            <button className="outline-button view-button">Ver todos projetos públicos no github<ArrowUpRight size={13} /></button>
           </a>
         </section>
 

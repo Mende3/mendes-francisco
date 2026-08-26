@@ -4,13 +4,12 @@ import {
   ArrowUpRight,
   BarChart3,
   Bot,
-  Check,
   ChevronDown,
   Code,
-  Download,
   ExternalLink,
+  FileUser,
   Loader2,
-  Mail,
+  Eye,
   Menu,
   Moon,
   Send,
@@ -20,7 +19,7 @@ import {
 
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { MdOutlineArchitecture } from 'react-icons/md';
-import { TbApi } from 'react-icons/tb';
+import { TbApi, TbBrandLinktree } from 'react-icons/tb';
 import { supabase } from './lib/supabase';
 import foto from './assets/profile3.jpeg'
 
@@ -31,6 +30,14 @@ interface Project {
   image_url: string | null;
   project_link: string | null;
 }
+
+const EMAIL = "mendesfrancisco172004@gmail.com"
+
+const RESUME_URL = "https://pub-8549ba9388f347258fc8a264b4eb85c9.r2.dev/files/resumo-mendes-francisco.pdf";
+const LINKEDIN_URL = "https://www.linkedin.com/in/mendes-francisco-4a1166368/"
+const LINKTREE_URL = "https://linktr.ee/mendesfrancisco172004";
+const GITHUB_URL = "https://github.com/Mende3"
+const CV_URL = "https://pub-8549ba9388f347258fc8a264b4eb85c9.r2.dev/files/cv-mendes-francisco.pdf";
 
 
 const services = [
@@ -47,13 +54,17 @@ function App() {
   const [dark, setDark] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeFilter, setActiveFilter] = useState('Machine learning');
-  // const [sent, setSent] = useState(false);
-  const sent = false;
 
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
 
   useEffect(() => {
     (async () => {
@@ -74,10 +85,18 @@ function App() {
     })();
   }, []);
 
-  // const handleSubmit = (event: React.FormEvent) => {
-  //   event.preventDefault();
-  //   setSent(true);
-  // };
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement >) => {
+    setForm({ ...form, [event.target.name]: event.target.value });
+  };
+
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    const subject = encodeURIComponent(`Serviço-portofólio (${form.subject})` || `Contacto de ${form.name}`);
+    const body = encodeURIComponent(
+      `Nome: ${form.name}\nEmail: ${form.email}\n\n${form.message}`
+    );
+    window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
+  };
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -107,7 +126,7 @@ function App() {
             <img src={foto} alt="" />
           </div>
           <h1>Mendes Francisco</h1>
-          <p className="hero-role">Ficheiro de Dados</p>
+          <p className="hero-role">☆☆☆☆☆</p>
           <p className="hero-copy">Como cientista de dados, backend developer, automatizador e sysadmin apaixonado, com experiência em programação, IA, dados, backend, docker e mais</p>
           <div className="filter-row">{skills.map((filter) => <button key={filter} className={activeFilter === filter ? 'filter active' : 'filter'} onClick={() => setActiveFilter(filter)}>{filter}</button>)}</div>
           <button className="primary-button" onClick={() => scrollTo('contact')}>Entre em contato<ArrowUpRight size={14} /></button>
@@ -117,11 +136,12 @@ function App() {
         <section className="about content-section" id="about">
           <SectionHeading title="Sobre Mim" subtitle="Minha Jornada" />
           <div className="about-copy">
-            <p>Olá amigo eu sou o Mendes Francisco, cientista de dados(em formação), desenvolvedor backend, automatizador, sysadmin formado na 42 Luanda, com foco em contribuir no setor tecnológico e atingir um grande marco.</p>
-            <p>Atualmente estou me focando em data science, é uma nova àrea para mim, um desafio que vale à pena enfrentar, mas isso não significa que deixei todas outras skills de lado.</p>
+            <p>Profissional de tecnologia versátil, formado pela Escola 42 Luanda, com uma trajetória construída sobre bases sólidas de programação de sistemas e engenharia backend. Atua como desenvolvedor full-stack, automatizador e administrador de sistemas (sysadmin), reunindo uma visão de produto de ponta a ponta, da infraestrutura ao código que chega ao utilizador final</p>
             <p>...</p>
           </div>
-          <button className="outline-button resume-button"><Download size={13} /> baixar o resumo</button>
+          <a href={RESUME_URL} target='_blank'>
+            <button className="outline-button resume-button"><Eye size={13} /> ver o resumo</button>
+          </a>
         </section>
 
         <section className="services content-section" id="services">
@@ -186,20 +206,71 @@ function App() {
 
         <section className="contact content-section" id="contact">
           <SectionHeading title="Entre em contacto" subtitle="Vamos trabalhar juntos" />
-          <form className="contact-form"> 
-            <label>Nome<input type="text" placeholder="exemplo@email.com" required /></label>
-            <label>Email<input type="email" placeholder="nome completo" required /></label>
-            <label>Serviço<div className="select-wrap"><select defaultValue=""><option value="" disabled>Seleciona um serviço</option><option>Data analytics</option><option>Backend</option><option>Uso de IA</option><option>Automações</option><option>Sys Admin</option><option>DevOp</option><option>Outro</option></select><ChevronDown size={14} /></div></label>
-            <label>Mensagem<textarea rows={5} required /></label>
-            <button className="submit-button" type="submit">{sent ? <><Check size={14} /> Enviado</> : <>Enviar <Send size={13} /></>}</button>
+          <form className="contact-form" onSubmit={handleSubmit}> 
+            <label>Nome
+              <input
+                type="text"
+                name="name"
+                value={form.name}
+                onChange={handleChange}
+                placeholder="nome completo"
+                required
+              />
+            </label>
+            <label>Email
+              <input 
+                type="email"
+                name="email"
+                value={form.email}
+                onChange={handleChange}
+                placeholder="exemplo@email.com" 
+                required
+              />
+            </label>
+            {/*  */}
+            <label>Serviço
+              <div className="select-wrap">
+                <select defaultValue="" name="subject" onChange={handleChange}>
+                  <option value="" disabled>Seleciona um serviço</option>
+                  <option value="Data analytics">Data analytics</option>
+                  <option value="Backend">Backend</option>
+                  <option value="Uso de IA">Uso de IA</option>
+                  <option value="Automações">Automações</option>
+                  <option value="Sys Admin">Sys Admin</option>
+                  <option value="DevOp">DevOp</option>
+                  <option value="Outro">Outro</option>
+                </select>
+                <ChevronDown size={14} />
+                </div>
+            </label>
+            <label>Mensagem
+              <textarea
+                name="message"
+                value={form.message}
+                onChange={handleChange}
+                rows={5}
+                required
+              />
+            </label>
+            <button className="submit-button" type="submit"><Send size={13} />Enviar</button>
           </form>
         </section>
       </main>
 
       <footer className="footer">
-        <div className="footer-top"><h2>Vamos<br />Trabalhar juntos!</h2><a className="email-pill" href="mendesfrancisco172004@gmail.com"><Mail size={14} />mendesfrancisco172004@gmail.com</a></div>
-        <div className="footer-bottom"><span>© 2026 todos direitos reservados.</span><div className="socials"><a href="#contact" aria-label="LinkedIn">
-          <FaLinkedin size={13} /></a><a href="#contact" aria-label="Github"><FaGithub size={13} /></a><a href="#contact" aria-label="Mail"><Mail size={13} /></a><a href="#top" aria-label="Back to top"><ArrowUpRight size={13} /></a></div></div>
+        <div className="footer-top">
+          <h2>Vamos<br />Trabalhar juntos!</h2>
+          <a className="email-pill" href={CV_URL} target='_blank'><FileUser size={14} />Visualizar CV</a></div>
+        <div className="footer-bottom">
+          <span>© 2026 todos direitos reservados.</span>
+          {/*  */}
+          <div className="socials">
+            <a href={LINKEDIN_URL} aria-label="LinkedIn" target='_blanck'><FaLinkedin size={13} /></a>
+            <a href={GITHUB_URL} aria-label="Github" target='_blanck'><FaGithub size={13} /></a>
+            <a href={LINKTREE_URL} aria-label="LinkTree" target='_blank'><TbBrandLinktree size={13} /></a>
+            <a href="#top" aria-label="Back to top"><ArrowUpRight size={13} /></a>
+          </div>
+        </div>
       </footer>
     </div>
   );

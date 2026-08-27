@@ -49,7 +49,7 @@ const services = [
 ];
 
 const filters = ['Machine learning', 'Sql', 'Power BI', 'ALLMs', 'Spatial Data Science'];
-const skills = ['TS/JS', 'C/C++/C#', 'Python', 'langChain/langGraph', 'IA', 'Redis', 'Postgres/MongoDB/MySQL', 'n8n', 'React', 'Supabase', 'Prisma', 'NestJS/FastAP', 'Node', 'BI', 'Docker', 'Prompt Enginer']
+const skills = ['TS/JS', 'C/C++/C#', 'Python', 'langChain/langGraph', 'IA', 'Redis', 'Postgres/MongoDB/MySQL', 'n8n', 'React', 'Supabase', 'Prisma', 'NestJS/FastAPI', 'Node', 'BI', 'Docker', 'Prompt Enginer']
 function App() {
   const [dark, setDark] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -108,7 +108,7 @@ function App() {
       <header className="site-header">
         <a className="brand" href="#top" onClick={() => scrollTo('top')}>Mendes</a>
         <nav className={menuOpen ? 'main-nav open' : 'main-nav'} aria-label="Main navigation">
-          {['Home', 'About', 'Projects', 'Services', 'Resume'].map((item) => (
+          {['Home', 'Sobre', 'Projetos', 'Serviços', 'Resume'].map((item) => (
             <button key={item} className={item === 'Home' ? 'active' : ''} onClick={() => scrollTo(item === 'Home' ? 'top' : item.toLowerCase())}>{item}</button>
           ))}
         </nav>
@@ -126,14 +126,14 @@ function App() {
             <img src={foto} alt="" />
           </div>
           <h1>Mendes Francisco</h1>
-          <p className="hero-role">☆☆☆☆☆</p>
-          <p className="hero-copy">Como cientista de dados, backend developer, automatizador e sysadmin apaixonado, com experiência em programação, IA, dados, backend, docker e mais</p>
+          <p className="hero-role">Engenheiro de software</p>
+          <p className="hero-copy">Com experiência em ciência de dados, fullstack, automação e sysadmin</p>
           <div className="filter-row">{skills.map((filter) => <button key={filter} className={activeFilter === filter ? 'filter active' : 'filter'} onClick={() => setActiveFilter(filter)}>{filter}</button>)}</div>
           <button className="primary-button" onClick={() => scrollTo('contact')}>Entre em contato<ArrowUpRight size={14} /></button>
 
         </section>
 
-        <section className="about content-section" id="about">
+        <section className="about content-section" id="sobre">
           <SectionHeading title="Sobre Mim" subtitle="Minha Jornada" />
           <div className="about-copy">
             <p>Profissional de tecnologia versátil, formado pela Escola 42 Luanda, com uma trajetória construída sobre bases sólidas de programação de sistemas e engenharia backend. Atua como desenvolvedor full-stack, automatizador e administrador de sistemas (sysadmin), reunindo uma visão de produto de ponta a ponta, da infraestrutura ao código que chega ao utilizador final</p>
@@ -144,7 +144,7 @@ function App() {
           </a>
         </section>
 
-        <section className="services content-section" id="services">
+        <section className="services content-section" id="serviços">
           <SectionHeading title="O que eu faço" subtitle="conheça os meus serviços" />
           <div className="services-grid">
             {services.map(({ icon: Icon, title, text }) => (
@@ -160,7 +160,7 @@ function App() {
           </div>
         </section>
 
-        <section className="projects content-section" id="projects">
+        <section className="projects content-section" id="projetos">
           <SectionHeading title="Projetos" subtitle="Alguns dos meus projetos" />
          
           <div className="filter-row">{filters.map((filter) => <button key={filter} className={activeFilter === filter ? 'filter active' : 'filter'} onClick={() => setActiveFilter(filter)}>{filter}</button>)}</div>

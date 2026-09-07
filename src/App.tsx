@@ -49,7 +49,7 @@ const services = [
 ];
 
 const filters = ['Machine learning', 'Sql', 'Power BI', 'ALLMs', 'Spatial Data Science'];
-const skills = ['TS/JS', 'C/C++/C#', 'Python', 'langChain/langGraph', 'IA', 'Redis', 'Postgres/MongoDB/MySQL', 'n8n', 'React', 'Supabase', 'Prisma', 'NestJS/FastAPI', 'Node', 'BI', 'Docker', 'Prompt Enginer']
+const skills = ['C/C++/C#/Python/JS/TS', 'langChain/langGraph', 'IA/PromptEnginer', 'Redis', 'Postgres/MongoDB/MySQL', 'airflow/n8n', 'React', 'Supabase', 'Prisma', 'NestJS/FastAPI', 'Node', 'BI', 'Docker', 'meltano/dbt/metabase']
 function App() {
   const [dark, setDark] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);

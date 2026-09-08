@@ -237,7 +237,7 @@ function App() {
                   <option value="Uso de IA">Uso de IA</option>
                   <option value="Automações">Automações</option>
                   <option value="Sys Admin">Sys Admin</option>
-                  <option value="DevOp">DevOp</option>
+                  <option value="DevOps">DevOps</option>
                   <option value="Outro">Outro</option>
                 </select>
                 <ChevronDown size={14} />

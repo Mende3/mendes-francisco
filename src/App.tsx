@@ -21,7 +21,6 @@ import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { MdOutlineArchitecture } from 'react-icons/md';
 import { TbApi, TbBrandLinktree } from 'react-icons/tb';
 import { supabase } from './lib/supabase';
-import WaveCursor from './components/WaveCursor';
 import foto from './assets/profile3.jpeg'
 
 interface Project {
@@ -53,9 +52,9 @@ const services = [
 const filters = ['Machine learning', 'Sql', 'Power BI', 'ALLMs', 'Spatial Data Science'];
 const skills = ['C/C++/C#/Python/JS/TS', 'langChain/langGraph', 'IA/PromptEnginer', 'Redis', 'Postgres/MongoDB/MySQL', 'airflow/n8n', 'React', 'Supabase', 'Prisma', 'NestJS/FastAPI', 'Node', 'BI', 'Docker', 'meltano/dbt/metabase'];
 const fallbackTechnologies = [
-  ['React', 'TypeScript', 'Supabase'],
-  ['Python', 'FastAPI', 'PostgreSQL'],
-  ['NestJS', 'Node.js', 'Docker'],
+  ['Docker', 'Nestjs-Microservices', 'Postgres', 'RabbitMQ', 'Redis', 'Grafana/prometheus', 'n8n', 'LMM/IA', 'Recat', 'cloudflare'],
+  ['React', 'Supabase'],
+  ['Python', 'Meltano', 'uv'],
 ];
 function App() {
   const [dark, setDark] = useState(true);
@@ -112,7 +111,6 @@ function App() {
 
   return (
     <div className={dark ? 'app dark' : 'app light'}>
-      <WaveCursor />
       <header className="site-header">
         <a className="brand" href="#top" onClick={() => scrollTo('top')}>Mendes</a>
         <nav className={menuOpen ? 'main-nav open' : 'main-nav'} aria-label="Main navigation">

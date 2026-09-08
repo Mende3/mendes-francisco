@@ -30,6 +30,7 @@ interface Project {
   description: string;
   image_url: string | null;
   project_link: string | null;
+  technologies?: string[];
 }
 
 const EMAIL = "mendesfrancisco172004@gmail.com"
@@ -50,7 +51,12 @@ const services = [
 ];
 
 const filters = ['Machine learning', 'Sql', 'Power BI', 'ALLMs', 'Spatial Data Science'];
-const skills = ['C/C++/C#/Python/JS/TS', 'langChain/langGraph', 'IA/PromptEnginer', 'Redis', 'Postgres/MongoDB/MySQL', 'airflow/n8n', 'React', 'Supabase', 'Prisma', 'NestJS/FastAPI', 'Node', 'BI', 'Docker', 'meltano/dbt/metabase']
+const skills = ['C/C++/C#/Python/JS/TS', 'langChain/langGraph', 'IA/PromptEnginer', 'Redis', 'Postgres/MongoDB/MySQL', 'airflow/n8n', 'React', 'Supabase', 'Prisma', 'NestJS/FastAPI', 'Node', 'BI', 'Docker', 'meltano/dbt/metabase'];
+const fallbackTechnologies = [
+  ['React', 'TypeScript', 'Supabase'],
+  ['Python', 'FastAPI', 'PostgreSQL'],
+  ['NestJS', 'Node.js', 'Docker'],
+];
 function App() {
   const [dark, setDark] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -187,14 +193,24 @@ function App() {
         {!loading && !error && projects.length > 0 && (
         <>
             <div className="projects-grid">
-              {projects.map((project) => <article className="project-card" key={project.id}>
-                  <div className="project-image">
-                    <img src={project.image_url ?? undefined} alt="Project preview" /><span className="project-overlay"><ExternalLink size={15} /></span>
-                  </div>
+              {projects.map((project, index) => {
+                const technologies = project.technologies ?? fallbackTechnologies[index % fallbackTechnologies.length];
+                return <article className="project-card" key={project.id}>
+                  <a className="project-link" href={project.project_link ?? '#'} target="_blank" rel="noreferrer" aria-label={`Abrir ${project.title}`}>
+                    <div className="project-image">
+                      <img src={project.image_url ?? undefined} alt={`Pré-visualização de ${project.title}`} />
+                      <span className="project-overlay"><ExternalLink size={15} /><span>Abrir projeto</span></span>
+                    </div>
+                  </a>
                   <div className="project-meta">
-                    <div><h3>{project.title}</h3><p>{project.description}</p></div><a href={project.project_link || undefined} target='_blank'><button aria-label="Open project"><ArrowUpRight size={13} /></button></a>
+                    <div className="project-copy"><h3>{project.title}</h3><p>{project.description}</p></div>
+                    <a className="project-arrow" href={project.project_link ?? '#'} target="_blank" rel="noreferrer" aria-label={`Abrir ${project.title}`}><ArrowUpRight size={13} /></a>
                   </div>
-              </article>)}
+                  <div className="project-technologies" aria-label="Tecnologias usadas">
+                    {technologies.map((technology) => <span key={technology}>{technology}</span>)}
+                  </div>
+                </article>;
+              })}
             </div> 
         </>
         )}

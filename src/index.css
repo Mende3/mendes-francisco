@@ -4,6 +4,7 @@
 @tailwind utilities;
 
 :root { font-family: 'DM Sans', sans-serif; color: #f7f8fa; background: #171819; font-synthesis: none; text-rendering: optimizeLegibility; }
+@media (hover: hover) and (pointer: fine) { * { cursor: none !important; } }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body { margin: 0; min-width: 320px; }

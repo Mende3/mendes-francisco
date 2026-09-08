@@ -21,6 +21,7 @@ import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { MdOutlineArchitecture } from 'react-icons/md';
 import { TbApi, TbBrandLinktree } from 'react-icons/tb';
 import { supabase } from './lib/supabase';
+import WaveCursor from './components/WaveCursor';
 import foto from './assets/profile3.jpeg'
 
 interface Project {
@@ -105,6 +106,7 @@ function App() {
 
   return (
     <div className={dark ? 'app dark' : 'app light'}>
+      <WaveCursor />
       <header className="site-header">
         <a className="brand" href="#top" onClick={() => scrollTo('top')}>Mendes</a>
         <nav className={menuOpen ? 'main-nav open' : 'main-nav'} aria-label="Main navigation">

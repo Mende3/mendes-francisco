@@ -93,22 +93,7 @@ const skills = [
   "Docker",
   "meltano/dbt/metabase",
 ];
-const fallbackTechnologies = [
-  [
-    "Docker",
-    "Nestjs-Microservices",
-    "Postgres",
-    "RabbitMQ",
-    "Redis",
-    "Grafana/prometheus",
-    "n8n",
-    "LMM/IA",
-    "Recat",
-    "cloudflare",
-  ],
-  ["React", "Supabase"],
-  ["Python", "Meltano", "uv"],
-];
+
 function App() {
   const [dark, setDark] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);

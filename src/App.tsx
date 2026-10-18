@@ -46,7 +46,7 @@ const services = [
   {
     icon: BarChart3,
     title: "Análise de dados",
-    text: "Sendo uma area dentro de data science estou dando uma olhada e aprendendo conceitos todos os dias, praticando também com ferramentas do Google e da Microsoft.",
+    text: "Sendo uma área dentro de data science estou dando uma olhada e aprendendo conceitos todos os dias, praticando também com ferramentas do Google e da Microsoft.",
   },
   {
     icon: Code,

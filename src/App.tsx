@@ -42,33 +42,94 @@ const GITHUB_URL = "https://github.com/Mende3";
 const CV_URL =
   "https://pub-8549ba9388f347258fc8a264b4eb85c9.r2.dev/files/cv-mendes-francisco.pdf";
 
-const services = [
-  {
-    icon: BarChart3,
-    title: "Análise de dados",
-    text: "Sendo uma área dentro de data science estou dando uma olhada e aprendendo conceitos todos os dias, praticando também com ferramentas do Google e da Microsoft.",
+type Language = "pt" | "en";
+
+const serviceIcons = [BarChart3, Code, MdOutlineArchitecture, Bot, TbApi];
+
+const translations = {
+  pt: {
+    nav: ["Home", "Sobre", "Projetos", "Serviços", "CV"],
+    contact: "Entre em contacto",
+    role: "Engenheiro de software",
+    hero: "Com experiência em ciência de dados, fullstack, automação e sysadmin",
+    contactAction: "Entre em contacto",
+    aboutTitle: "Sobre Mim",
+    aboutSubtitle: "Minha Jornada",
+    about: "Profissional de tecnologia versátil, formado pela Escola 42 Luanda, com uma trajetória construída sobre bases sólidas de programação de sistemas e engenharia backend. Atua como desenvolvedor full-stack, automatizador e administrador de sistemas (sysadmin), reunindo uma visão de produto de ponta a ponta, da infraestrutura ao código que chega ao utilizador final.",
+    resume: "Ver o resumo",
+    servicesTitle: "O que eu faço",
+    servicesSubtitle: "Conheça os meus serviços",
+    projectsTitle: "Projetos",
+    projectsSubtitle: "Alguns dos meus projetos",
+    loading: "A carregar projetos...",
+    errorTitle: "Algo correu mal",
+    error: "Não foi possível carregar os projetos. Tente novamente mais tarde.",
+    openProject: "Abrir projeto",
+    technologies: "Tecnologias usadas",
+    allProjects: "Ver todos os projetos públicos no GitHub",
+    contactTitle: "Entre em contacto",
+    contactSubtitle: "Vamos trabalhar juntos",
+    name: "Nome",
+    fullName: "nome completo",
+    email: "Email",
+    service: "Serviço",
+    chooseService: "Selecione um serviço",
+    message: "Mensagem",
+    send: "Enviar",
+    footer: "Vamos",
+    footerSecond: "Trabalhar juntos!",
+    viewCv: "Visualizar CV",
+    rights: "todos os direitos reservados.",
+    services: [
+      ["Análise de dados", "Exploro dados e pratico conceitos de data science com ferramentas do Google e da Microsoft."],
+      ["Programação intensiva", "Construo software com bases sólidas de programação de sistemas e engenharia backend."],
+      ["Arquiteto de soluções", "Desenho estruturas técnicas e recomendo ferramentas que respondem aos objetivos do projeto."],
+      ["Agentes de IA", "Criação de agentes de IA e integração de ferramentas."],
+      ["Desenvolvimento e integração de APIs", "Desenvolvo APIs em NestJS e FastAPI e integro serviços de terceiros."],
+    ],
   },
-  {
-    icon: Code,
-    title: "Programação intensiva",
-    text: "Uma das características da 42Escola é fazer com que o aluno aprenda a escrever códigos na raça, e comigo não foi diferente.",
+  en: {
+    nav: ["Home", "About", "Projects", "Services", "Resume"],
+    contact: "Get in touch",
+    role: "Software engineer",
+    hero: "Experienced in data science, fullstack development, automation and sysadmin",
+    contactAction: "Get in touch",
+    aboutTitle: "About Me",
+    aboutSubtitle: "My Journey",
+    about: "Versatile technology professional, trained at 42 Luanda, with a path built on strong foundations in systems programming and backend engineering. I work as a full-stack developer, automation builder and systems administrator, bringing an end-to-end product perspective from infrastructure to the final user experience.",
+    resume: "View summary",
+    servicesTitle: "What I do",
+    servicesSubtitle: "Explore my services",
+    projectsTitle: "Projects",
+    projectsSubtitle: "Some of my projects",
+    loading: "Loading projects...",
+    errorTitle: "Something went wrong",
+    error: "Unable to load the projects. Please try again later.",
+    openProject: "Open project",
+    technologies: "Technologies used",
+    allProjects: "View all public projects on GitHub",
+    contactTitle: "Get in touch",
+    contactSubtitle: "Let's work together",
+    name: "Name",
+    fullName: "full name",
+    email: "Email",
+    service: "Service",
+    chooseService: "Choose a service",
+    message: "Message",
+    send: "Send",
+    footer: "Let's",
+    footerSecond: "Work together!",
+    viewCv: "View CV",
+    rights: "all rights reserved.",
+    services: [
+      ["Data analysis", "I explore data and practice data science concepts with Google and Microsoft tools."],
+      ["Intensive programming", "I build software on strong foundations in systems programming and backend engineering."],
+      ["Solution architecture", "I design technical structures and recommend tools that answer each project's goals."],
+      ["AI agents", "Creation of AI agents and tool integrations."],
+      ["API development and integration", "I build APIs with NestJS and FastAPI and integrate third-party services."],
+    ],
   },
-  {
-    icon: MdOutlineArchitecture,
-    title: "Arquiteto de Soluções ",
-    text: "Desenho estruturas técnicas, como um EDA e quais Design Patterns usar, recomendo as melhores ferramentas e plaformas e garanto que o sistema ou as escolhas atendem as nessecidades e objetivos.",
-  },
-  {
-    icon: Bot,
-    title: "Agentes de IA",
-    text: "Criação de agentes de IA e integração de ferramentas.",
-  },
-  {
-    icon: TbApi,
-    title: "Desenvovimento e Integração de API",
-    text: "Desenvolvo APIs em NestJS e Fastapi(como uma segunda stack), com essas mesmas ferramentas integro APIs de terceiros em sistemas",
-  },
-];
+} as const;
 
 const filters = [
   "Machine learning",
@@ -113,6 +174,8 @@ function App() {
   const [dark, setDark] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeFilter, setActiveFilter] = useState("Machine learning");
+  const [language, setLanguage] = useState<Language>("pt");
+  const copy = translations[language];
 
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
@@ -139,9 +202,7 @@ function App() {
         if (queryError) throw queryError;
         setProjects(data ?? []);
       } catch (err) {
-        setError(
-          "Não foi possível carregar os projetos. Tente novamente mais tarde.",
-        );
+        setError("project_error");
       } finally {
         setLoading(false);
       }
@@ -172,6 +233,10 @@ function App() {
     setMenuOpen(false);
   };
 
+  useEffect(() => {
+    document.documentElement.lang = language;
+  }, [language]);
+
   return (
     <div className={dark ? "app dark" : "app light"}>
       <header className="site-header">
@@ -182,24 +247,27 @@ function App() {
           className={menuOpen ? "main-nav open" : "main-nav"}
           aria-label="Main navigation"
         >
-          {["Home", "Sobre", "Projetos", "Serviços", "Resume"].map((item) => (
+          {copy.nav.map((item, index) => (
             <button
               key={item}
-              className={item === "Home" ? "active" : ""}
-              onClick={() =>
-                scrollTo(item === "Home" ? "top" : item.toLowerCase())
-              }
+              className={index === 0 ? "active" : ""}
+              onClick={() => scrollTo(["top", "sobre", "projetos", "serviços", "contact"][index])}
             >
               {item}
             </button>
           ))}
         </nav>
         <div className="header-actions">
+          <div className="language-switcher" aria-label="Choose language">
+            {(["en", "pt"] as Language[]).map((option) => (
+              <button key={option} className={language === option ? "active" : ""} onClick={() => setLanguage(option)} aria-pressed={language === option}>{option}</button>
+            ))}
+          </div>
           <button
             className="outline-button header-contact"
             onClick={() => scrollTo("contact")}
           >
-            Entre em contacto
+            {copy.contact}
           </button>
           <button
             className="theme-button"
@@ -225,10 +293,8 @@ function App() {
             <img src={foto} alt="" />
           </div>
           <h1>Mendes Francisco</h1>
-          <p className="hero-role">Engenheiro de software</p>
-          <p className="hero-copy">
-            Com experiência em ciência de dados, fullstack, automação e sysadmin
-          </p>
+          <p className="hero-role">{copy.role}</p>
+          <p className="hero-copy">{copy.hero}</p>
           <div className="filter-row">
             {skills.map((filter) => (
               <button
@@ -244,39 +310,33 @@ function App() {
             className="primary-button"
             onClick={() => scrollTo("contact")}
           >
-            Entre em contato
+            {copy.contactAction}
             <ArrowUpRight size={14} />
           </button>
         </section>
 
         <section className="about content-section" id="sobre">
-          <SectionHeading title="Sobre Mim" subtitle="Minha Jornada" />
+          <SectionHeading title={copy.aboutTitle} subtitle={copy.aboutSubtitle} />
           <div className="about-copy">
-            <p>
-              Profissional de tecnologia versátil, formado pela Escola 42
-              Luanda, com uma trajetória construída sobre bases sólidas de
-              programação de sistemas e engenharia backend. Atua como
-              desenvolvedor full-stack, automatizador e administrador de
-              sistemas (sysadmin), reunindo uma visão de produto de ponta a
-              ponta, da infraestrutura ao código que chega ao utilizador final
-            </p>
+            <p>{copy.about}</p>
             <p>...</p>
           </div>
           <a href={RESUME_URL} target="_blank">
             <button className="outline-button resume-button">
-              <Eye size={13} /> ver o resumo
+              <Eye size={13} /> {copy.resume}
             </button>
           </a>
         </section>
 
         <section className="services content-section" id="serviços">
           <SectionHeading
-            title="O que eu faço"
-            subtitle="conheça os meus serviços"
+            title={copy.servicesTitle}
+            subtitle={copy.servicesSubtitle}
           />
           <div className="services-grid">
-            {services.map(({ icon: Icon, title, text }) => (
-              <article className="service-card" key={title}>
+            {copy.services.map(([title, text], index) => {
+              const Icon = serviceIcons[index];
+              return <article className="service-card" key={title}>
                 <div className="flex gap-2">
                   <div className="service-icon">
                     <Icon size={14} />
@@ -284,8 +344,8 @@ function App() {
                 </div>
                 <h3>{title}</h3>
                 <p>{text}</p>
-              </article>
-            ))}
+              </article>;
+            })}
             <div className="service-image">
               <div className="network-art">
                 <span />
@@ -301,8 +361,8 @@ function App() {
 
         <section className="projects content-section" id="projetos">
           <SectionHeading
-            title="Projetos"
-            subtitle="Alguns dos meus projetos"
+            title={copy.projectsTitle}
+            subtitle={copy.projectsSubtitle}
           />
 
           <div className="filter-row">
@@ -321,7 +381,7 @@ function App() {
             <div className="flex flex-col items-center justify-center py-20 gap-4">
               <Loader2 className="w-8 h-8 text-neon-500 animate-spin" />
               <p className="text-sm text-gray-500 font-mono">
-                A carregar projetos...
+                {copy.loading}
               </p>
             </div>
           )}
@@ -331,9 +391,9 @@ function App() {
               <AlertCircle className="w-6 h-6 text-amber-400 flex-shrink-0 mt-0.5" />
               <div>
                 <h3 className="text-white font-semibold mb-1">
-                  Algo correu mal
+                  {copy.errorTitle}
                 </h3>
-                <p className="text-sm text-gray-400">{error}</p>
+                <p className="text-sm text-gray-400">{copy.error}</p>
               </div>
             </div>
           )}
@@ -359,7 +419,7 @@ function App() {
                           />
                           <span className="project-overlay">
                             <ExternalLink size={15} />
-                            <span>Abrir projeto</span>
+                            <span>{copy.openProject}</span>
                           </span>
                         </div>
                       </a>
@@ -380,7 +440,7 @@ function App() {
                       </div>
                       <div
                         className="project-technologies"
-                        aria-label="Tecnologias usadas"
+                        aria-label={copy.technologies}
                       >
                         {technologies?.map((technology) => (
                           <span key={technology}>{technology}</span>
@@ -393,33 +453,31 @@ function App() {
             </>
           )}
 
-          <a href="https://github.com/Mende3" target="_blank">
-            <button className="outline-button view-button">
-              Ver todos projetos públicos no github
-              <ArrowUpRight size={13} />
-            </button>
+          <a className="outline-button view-button" href="https://github.com/Mende3" target="_blank" rel="noreferrer">
+            {copy.allProjects}
+            <ArrowUpRight size={13} />
           </a>
         </section>
 
         <section className="contact content-section" id="contact">
           <SectionHeading
-            title="Entre em contacto"
-            subtitle="Vamos trabalhar juntos"
+            title={copy.contactTitle}
+            subtitle={copy.contactSubtitle}
           />
           <form className="contact-form" onSubmit={handleSubmit}>
             <label>
-              Nome
+              {copy.name}
               <input
                 type="text"
                 name="name"
                 value={form.name}
                 onChange={handleChange}
-                placeholder="nome completo"
+                placeholder={copy.fullName}
                 required
               />
             </label>
             <label>
-              Email
+              {copy.email}
               <input
                 type="email"
                 name="email"
@@ -431,11 +489,11 @@ function App() {
             </label>
             {/*  */}
             <label>
-              Serviço
+              {copy.service}
               <div className="select-wrap">
                 <select defaultValue="" name="subject" onChange={handleChange}>
                   <option value="" disabled>
-                    Seleciona um serviço
+                    {copy.chooseService}
                   </option>
                   <option value="Data analytics">Data analytics</option>
                   <option value="Backend">Backend</option>
@@ -449,7 +507,7 @@ function App() {
               </div>
             </label>
             <label>
-              Mensagem
+              {copy.message}
               <textarea
                 name="message"
                 value={form.message}
@@ -460,7 +518,7 @@ function App() {
             </label>
             <button className="submit-button" type="submit">
               <Send size={13} />
-              Enviar
+              {copy.send}
             </button>
           </form>
         </section>
@@ -469,17 +527,17 @@ function App() {
       <footer className="footer">
         <div className="footer-top">
           <h2>
-            Vamos
+            {copy.footer}
             <br />
-            Trabalhar juntos!
+            {copy.footerSecond}
           </h2>
           <a className="email-pill" href={CV_URL} target="_blank">
             <FileUser size={14} />
-            Visualizar CV
+            {copy.viewCv}
           </a>
         </div>
         <div className="footer-bottom">
-          <span>© 2026 todos direitos reservados.</span>
+          <span>© 2026 {copy.rights}</span>
           {/*  */}
           <div className="socials">
             <a href={LINKEDIN_URL} aria-label="LinkedIn" target="_blanck">

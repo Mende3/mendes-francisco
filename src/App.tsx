@@ -35,12 +35,12 @@ interface Project {
 const EMAIL = "mendesfrancisco172004@gmail.com";
 
 const RESUME_URL =
-  "https://pub-8549ba9388f347258fc8a264b4eb85c9.r2.dev/files/resumo-mendes-francisco.pdf";
+  "https://pub-8549ba9388f347258fc8a264b4eb85c9.r2.dev/files/resumo-mendes-francisco-11-17-26.pdf";
 const LINKEDIN_URL = "https://www.linkedin.com/in/mendes-francisco-4a1166368/";
 const LINKTREE_URL = "https://linktr.ee/mendesfrancisco172004";
 const GITHUB_URL = "https://github.com/Mende3";
 const CV_URL =
-  "https://pub-8549ba9388f347258fc8a264b4eb85c9.r2.dev/files/cv-mendes-francisco.pdf";
+  "https://pub-8549ba9388f347258fc8a264b4eb85c9.r2.dev/files/cv-mendes-francisco-11-17-26.pdf";
 
 type Language = "pt" | "en";
 
@@ -48,14 +48,14 @@ const serviceIcons = [BarChart3, Code, MdOutlineArchitecture, Bot, TbApi];
 
 const translations = {
   pt: {
-    nav: ["Home", "Sobre", "Projetos", "Serviços", "CV"],
+    nav: ["Home", "Sobre", "Projetos", "Serviços"],
     contact: "Entre em contacto",
     role: "Engenheiro de software",
-    hero: "Com experiência em ciência de dados, fullstack, automação e sysadmin",
+    hero: "Com experiência em IA e dados, desenvolvimento de software, automação e sysadmin",
     contactAction: "Entre em contacto",
     aboutTitle: "Sobre Mim",
     aboutSubtitle: "Minha Jornada",
-    about: "Profissional de tecnologia versátil, formado pela Escola 42 Luanda, com uma trajetória construída sobre bases sólidas de programação de sistemas e engenharia backend. Atua como desenvolvedor full-stack, automatizador e administrador de sistemas (sysadmin), reunindo uma visão de produto de ponta a ponta, da infraestrutura ao código que chega ao utilizador final.",
+    about: "Mendes Francisco, formado pela 42 Luanda , onde desenvolvi autonomia para resolver problemas complexos na prática, trabalhando em equipa num ambiente sem professores. Consolidando competências em programação imperativa, SQL, DevOps, arquitetura de software, dados e IA através de projetos reais e avaliação entre pares.",
     resume: "Ver o resumo",
     servicesTitle: "O que eu faço",
     servicesSubtitle: "Conheça os meus serviços",
@@ -81,7 +81,7 @@ const translations = {
     viewCv: "Visualizar CV",
     rights: "todos os direitos reservados.",
     services: [
-      ["Análise de dados", "Exploro dados e pratico conceitos de data science com ferramentas do Google e da Microsoft."],
+      ["IA e dados", "Construo pipelines de dados bem estruturados tanto para engenheria de dados e tambem para machine learning."],
       ["Programação intensiva", "Construo software com bases sólidas de programação de sistemas e engenharia backend."],
       ["Arquiteto de soluções", "Desenho estruturas técnicas e recomendo ferramentas que respondem aos objetivos do projeto."],
       ["Agentes de IA", "Criação de agentes de IA e integração de ferramentas."],
@@ -89,14 +89,14 @@ const translations = {
     ],
   },
   en: {
-    nav: ["Home", "About", "Projects", "Services", "Resume"],
+    nav: ["Home", "About", "Projects", "Services"],
     contact: "Get in touch",
     role: "Software engineer",
-    hero: "Experienced in data science, fullstack development, automation and sysadmin",
+    hero: "Experienced AI and data, software development, automation and sysadmin",
     contactAction: "Get in touch",
     aboutTitle: "About Me",
     aboutSubtitle: "My Journey",
-    about: "Versatile technology professional, trained at 42 Luanda, with a path built on strong foundations in systems programming and backend engineering. I work as a full-stack developer, automation builder and systems administrator, bringing an end-to-end product perspective from infrastructure to the final user experience.",
+    about: "Mendes Francisco, a graduate of 42 Luanda, where I developed the autonomy to solve complex problems in practice while working in teams within a teacherless environment. I consolidated skills in imperative programming, SQL, DevOps, software architecture, data, and AI through real-world projects and peer-to-peer evaluation.",
     resume: "View summary",
     servicesTitle: "What I do",
     servicesSubtitle: "Explore my services",
@@ -122,7 +122,7 @@ const translations = {
     viewCv: "View CV",
     rights: "all rights reserved.",
     services: [
-      ["Data analysis", "I explore data and practice data science concepts with Google and Microsoft tools."],
+      ["AI and Data", "I build well-structured data pipelines for both data engineering and machine learning."],
       ["Intensive programming", "I build software on strong foundations in systems programming and backend engineering."],
       ["Solution architecture", "I design technical structures and recommend tools that answer each project's goals."],
       ["AI agents", "Creation of AI agents and tool integrations."],
